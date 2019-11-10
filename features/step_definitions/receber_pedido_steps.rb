@@ -1,6 +1,6 @@
 And("O usuario de nome {string} efetuou o pedido de codigo {string} da compra do produto de codigo {int}") do |_nomeUser ,codigoPedido, codigoProduto|
   click_button 'adicionarAoCarrinho'
-  expect(page).to have_text('Seu carrinho')
+  expect(page).to have_text('Show pedido')
   click_button 'finalizarPedidoUser'
   expect(page).to have_text(codigoPedido)
   expect(page).to have_text(codigoProduto)
