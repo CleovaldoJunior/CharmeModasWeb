@@ -11,8 +11,8 @@
       <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario), id: "edit-#{comentario.usuario.nome}-#{comentario.titulo}" %>
       <%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'}, id: "destroy-#{comentario.usuario.nome}-#{comentario.titulo}" %>
       <div id="new-reply"></div>
+    </dd>
   <% end %>
-  </dd>
   <dd>
     <%= render partial: 'comentarios/reply', collection: comentario.comentarios %>
   </dd>

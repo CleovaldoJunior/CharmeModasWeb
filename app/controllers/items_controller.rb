@@ -14,7 +14,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @produto = Produto.find(params[:produto_id])
+    @produto = Produto.find(item_params[:produto_id])
     @item = @current.add_produto(@produto)
 
     respond_to do |format|
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to @pedido, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to @item.pedido, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to @pedido, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -56,6 +56,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.permit(:produto_id, :quantidade, :pedido_id)
+      params.require(:item).permit(:quantidade, :produto_id, :pedido_id)
     end
 end

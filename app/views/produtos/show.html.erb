@@ -13,7 +13,9 @@
     <%= link_to "Create comentario", new_produto_comentario_path(@produto), class: 'btn btn-primary', id: 'create-comentario' %>
   <% end %>
   <% if @current %>
-    <%= button_to 'Adicionar ao carrinho', pedido_items_path(@current, produto_id: @produto),id: 'adicionarAoCarrinho', class: 'btn btn-success' %>  <% end %>
+    <%= button_to 'Adicionar ao carrinho', pedido_items_path(pedido_id: @current, item: {produto_id: @produto}),
+                  id: 'adicionarAoCarrinho', method: :post, class: 'btn btn-success' %>
+  <% end %>
   <h1>Produto</h1>
 </div>
 <dl class="dl-horizontal">

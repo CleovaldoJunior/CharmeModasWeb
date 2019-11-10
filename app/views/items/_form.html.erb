@@ -1,37 +1,27 @@
-<%= form_for(@item, html: { class: "form-horizontal", role: "form" }) do |f| %>
-<% if @item.errors.any? %>
-<div class="alert alert-danger alert-dismissable" role="alert">
-  <button type="button" class="close" data-dismiss="alert">
-    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  <h4><%= pluralize(@item.errors.count, "error") %> prohibited this item
-    from being saved:</h4>
+<%= form_for([@pedido, @item], html: {class: "form-horizontal", role: "form"}) do |f| %>
+  <% if @item.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@item.errors.count, "error") %> prohibited this item
+        from being saved:</h4>
 
-  <ul>
-    <% @item.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
-
-
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="form-group">
-    <%= f.label :produto, class: "col-sm-2 control-label" %>
+    <%= f.label :quantidade, class: "col-sm-2 control-label" %>
     <div class="col-sm-10">
-      <%= f.text_field :produto, class: "form-control" %>
+      <%= f.number_field :quantidade, class: "form-control" %>
     </div>
   </div>
-
   <div class="form-group">
-    <%= f.label :pedido, class: "col-sm-2 control-label" %>
-    <div class="col-sm-10">
-      <%= f.text_field :pedido, class: "form-control" %>
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
     </div>
   </div>
-
-<div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit class: "btn btn-primary" %>
-  </div>
-</div>
 <% end %>
